@@ -1,0 +1,39 @@
+{
+  "name": "factory-granny",
+  "version": "1.0.0",
+  "description": "Factory for building flexible JavaScript objects. Inspired by factory_girl.",
+  "main": "./index.js",
+  "scripts": {
+    "test": "npm run lint && npm run mocha",
+    "coverage": "istanbul cover ./node_modules/.bin/_mocha -- --opts mocha.opts",
+    "mocha": "./node_modules/.bin/_mocha --opts mocha.opts",
+    "lint": "jshint --reporter=node_modules/jshint-stylish lib tests; jscs lib tests; exit 0;"
+  },
+  "author": "Breno Lima de Freitas <brenolimadefreitas@gmail.com> (https://breno.io/)",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "rosie": "^1.2.0",
+    "sinon": "^1.17.1",
+    "sinon-as-promised": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "jscs": "^2.2.1",
+    "jshint-stylish": "^2.0.1",
+    "mocha": "^2.3.3",
+    "sinon-chai": "^2.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brenolf/factory-granny.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brenolf/factory-granny/issues"
+  },
+  "homepage": "https://github.com/brenolf/factory-granny",
+  "keywords": [
+    "factory",
+    "factory_girl",
+    "stub"
+  ]
+}
