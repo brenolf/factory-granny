@@ -11,3 +11,9 @@ global.sinon = require('sinon')
 require('sinon-as-promised')
 
 global.expect = chai.expect
+
+global.Factory = require('rosie').Factory
+
+Factory.prototype.traits = {}
+
+global.Factories = {}

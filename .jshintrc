@@ -17,11 +17,10 @@
       "module": true,
       "global": true,
       "sinon": true,
-      "rewire": true,
       "expect": true,
       "Factories": true,
       "Factory": true,
-      "Stub": true
+      "__dirname": true
     },
 
     "laxbreak"      : true,

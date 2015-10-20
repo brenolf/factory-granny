@@ -14,7 +14,8 @@
   "dependencies": {
     "rosie": "^1.2.0",
     "sinon": "^1.17.1",
-    "sinon-as-promised": "^4.0.0"
+    "sinon-as-promised": "^4.0.0",
+    "wrench": "^1.5.8"
   },
   "devDependencies": {
     "chai": "^3.3.0",
