@@ -23,12 +23,44 @@ var sinon = require('sinon')
 
 var UserFactory = new Factory()
 .attr('name', 'brenolf')
-.static('sayMyName', sinon.stub())
+.static('sayMyName', sinon.stub)
 
 var instance = UserFactory.build()
 ```
 
 In this example `instance` is a function that always returns an object `{username: 'brenolf'}` when called with `new`. Also, this function will have a `sayMyName` property that is a sinon stub. As simple as that!
+
+Static attributes may also have dependencies over other fields:
+
+```js
+var UserFactory = new Factory()
+.attr('name', 'brenolf')
+.static('sayMyName', ['name'], function (name) {
+	return 'Hello ' + name
+})
+```
+
+Ultimately you can track the changes of the instance being returned on every `build` called, and thus, spy on them.
+
+```js
+// factory.js
+module.exports = new Factory()
+.attr('name', 'brenolf')
+.attr('spy', sinon.stub)
+.static('sayMyName', ['name'], function (name) {
+	return 'Hello ' + name
+})
+
+// test.js
+var Factory = require('factory.js')
+
+var user = Factory.build()
+var instance = user._instance
+
+// ...
+
+expect(instance.spy).to.have.been.calledOnce
+```
 
 ### Traits
 
