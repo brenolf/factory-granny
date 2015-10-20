@@ -91,8 +91,8 @@ var UserFactory = new Factory()
 There are many other aliases to make writing you factories a fun work:
 
 * `default()`: `sinon.stub()`
-* `truthy()`: `sinon.stub().returns(true)`
-* `falsy()`: `sinon.stub().returns(false)`
+* `true()`: `sinon.stub().returns(true)`
+* `false()`: `sinon.stub().returns(false)`
 * `returns(value)`: `sinon.stub().returns(value)`
 * `throws()`: `sinon.stub().throws()`
 * `resolves(value)`: A sinon promise stub which resolves to a given value (`{}` if none given)

@@ -1,6 +1,6 @@
 {
   "name": "factory-granny",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Factory for building flexible JavaScript objects. Inspired by factory_girl.",
   "main": "./index.js",
   "scripts": {
