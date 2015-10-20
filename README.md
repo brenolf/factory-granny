@@ -1,11 +1,14 @@
 <h1 align="center">
 	<br>
-	<img width="350" src="./logo.png" alt="Factory Granny">
+	<img width="400" src="./logo.png" alt="Factory Granny">
 	<br>
 	<br>
 	<br>
 </h1>
 
+
+[![Build Status](https://travis-ci.org/brenolf/factory-granny.svg)](https://travis-ci.org/brenolf/factory-granny)
+[![Coverage Status](https://coveralls.io/repos/brenolf/factory-granny/badge.svg?branch=master&service=github)](https://coveralls.io/github/brenolf/factory-granny?branch=master)
 > Who were you expecting, Pocahontas?
 
 Factory Granny is a JavaScript library for Factories that are different from the others because it also allows you to build functions instead of objects; This little feature eases test development by allowing you to directly use a Factory instance instead of needing to stub many functions.
