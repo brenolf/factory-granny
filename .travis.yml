@@ -4,4 +4,4 @@ node_js:
   - '0.12'
   - '4.0'
 before_install:
-  - npm install -g npm@latest instanbul jshint
+  - npm install -g istanbul jshint
