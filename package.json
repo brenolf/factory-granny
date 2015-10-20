@@ -5,6 +5,7 @@
   "main": "./index.js",
   "scripts": {
     "test": "npm run lint && npm run mocha",
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "coverage": "istanbul cover ./node_modules/.bin/_mocha -- --opts mocha.opts",
     "mocha": "./node_modules/.bin/_mocha --opts mocha.opts",
     "lint": "jshint --reporter=node_modules/jshint-stylish lib tests; jscs lib tests; exit 0;"
@@ -20,9 +21,11 @@
   "devDependencies": {
     "chai": "^3.3.0",
     "chai-as-promised": "^5.1.0",
+    "coveralls": "^2.11.4",
     "jscs": "^2.2.1",
     "jshint-stylish": "^2.0.1",
     "mocha": "^2.3.3",
+    "mocha-lcov-reporter": "^1.0.0",
     "sinon-chai": "^2.8.0"
   },
   "repository": {
