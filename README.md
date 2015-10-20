@@ -66,7 +66,7 @@ var instance = user._instance
 expect(instance.spy).to.have.been.calledOnce
 ```
 
-You can call `build` instead of `get` in order to get an object with all the attributes given, but not needing to instantiate the returned function.
+You can also call `build` instead of `get` in order to get an object with all the attributes given, but not needing to instantiate the returned function.
 
 ```js
 /*
@@ -114,7 +114,7 @@ There are many other aliases to make writing you factories a fun work:
 
 | Method                   | Equivalent                                                                           |
 |--------------------------|--------------------------------------------------------------------------------------|
-| `default()`              | `sinon.stub()`                                                                       |
+| `simple()`              | `sinon.stub()`                                                                       |
 | `true()`                 | `sinon.stub().returns(true)`                                                         |
 | `false()`                | `sinon.stub().returns(false)`                                                        |
 | `returns(value)`         | `sinon.stub().returns(value)`                                                        |
