@@ -74,7 +74,7 @@ Factory Granny makes it super easy to use traits in your development.
 UserFactory.trait('another')
 .attr('name', 'heisenberg')
 
-UserFactory.traits.another.build().sayMyName()
+UserFactory.traits.another.build().sayMyName
 ```
 
 ### Factory box
