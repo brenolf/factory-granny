@@ -1,15 +1,15 @@
-var build = require('../../../../lib/factory-granny/prototypes/build')
+var get = require('../../../../lib/factory-granny/prototypes/get')
 
-describe('FactoryGranny#build', function () {
+describe('FactoryGranny#get', function () {
   var FactoryGranny, FactoryGrannyStatic, subject
 
   beforeEach(function () {
     FactoryGranny = Factories.FactoryGranny.build()
     FactoryGrannyStatic = Factories.FactoryGranny.traits.static.build()
 
-    build(FactoryGranny)
+    get(FactoryGranny)
 
-    subject = FactoryGranny.prototype.build
+    subject = FactoryGranny.prototype.get
   })
 
   context('when there is no static properties', function () {
