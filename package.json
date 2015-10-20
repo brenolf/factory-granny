@@ -5,7 +5,7 @@
   "main": "./index.js",
   "scripts": {
     "test": "npm run lint && npm run mocha",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --opts mocha.opts --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha -- --opts mocha.opts --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "coverage": "istanbul cover ./node_modules/.bin/_mocha -- --opts mocha.opts",
     "mocha": "./node_modules/.bin/_mocha --opts mocha.opts",
     "lint": "jshint --reporter=node_modules/jshint-stylish lib tests; jscs lib tests; exit 0;"
