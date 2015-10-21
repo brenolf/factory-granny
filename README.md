@@ -9,6 +9,7 @@
 
 [![Build Status](https://travis-ci.org/brenolf/factory-granny.svg)](https://travis-ci.org/brenolf/factory-granny)
 [![Coverage Status](https://coveralls.io/repos/brenolf/factory-granny/badge.svg?branch=master&service=github)](https://coveralls.io/github/brenolf/factory-granny?branch=master)
+[![Code Climate](https://codeclimate.com/github/brenolf/factory-granny/badges/gpa.svg)](https://codeclimate.com/github/brenolf/factory-granny)
 [![npm version](https://badge.fury.io/js/factory-granny.svg)](http://badge.fury.io/js/factory-granny)
 > Who were you expecting, Pocahontas?
 
