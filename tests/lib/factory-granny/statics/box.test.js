@@ -30,6 +30,16 @@ describe('Factory#box', function () {
     })
   })
 
+  describe('#returns', function () {
+    it('returns a sinon stub that returns a given value', function () {
+      var subject = box.returns(42)()
+
+      expect(subject.isSinonProxy).to.be.truthy
+      expect(subject.called).to.be.falsy
+      expect(subject()).to.be.eql(42)
+    })
+  })
+
   describe('#throws', function () {
     it('returns a sinon stub that throws an error', function () {
       var subject = box.throws()()
