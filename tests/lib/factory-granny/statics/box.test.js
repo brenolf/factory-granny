@@ -53,29 +53,16 @@ describe('Factory#box', function () {
   })
 
   describe('#resolves', function () {
-    context('when a value to be yielded is given', function () {
-      it('retuns a sinon stub that yields the given object', function () {
-        var subject = box.resolves({
-          x: 42
-        })()
+    it('retuns a sinon stub that yields the given object', function () {
+      var subject = box.resolves({
+        x: 42
+      })()
 
-        expect(subject.isSinonProxy).to.be.truthy
-        expect(subject.called).to.be.falsy
+      expect(subject.isSinonProxy).to.be.truthy
+      expect(subject.called).to.be.falsy
 
-        return expect(subject()).to.eventually.eql({
-          x: 42
-        })
-      })
-    })
-
-    context('when no value to be yielded is given', function () {
-      it('retuns a sinon stub that yields an object', function () {
-        var subject = box.resolves()()
-
-        expect(subject.isSinonProxy).to.be.truthy
-        expect(subject.called).to.be.falsy
-
-        return expect(subject()).to.eventually.eql({})
+      return expect(subject()).to.eventually.eql({
+        x: 42
       })
     })
   })

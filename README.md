@@ -120,7 +120,8 @@ There are many other aliases to make writing you factories a fun work:
 | `false()`                | `sinon.stub().returns(false)`                                                        |
 | `returns(value)`         | `sinon.stub().returns(value)`                                                        |
 | `throws()`               | `sinon.stub().throws()`                                                              |
-| `resolves(value)`        | A sinon promise stub which resolves to a given value (`{}` if none given)            |
+| `resolves(value)`        | A sinon promise stub which resolves to a given value
+|
 | `rejects()`              | A sinon promise stub that rejects                                                    |
 | `builds(Factory, trait)` | A sinon promise stub which resolves into an instance of the given factory and trait. |
 
