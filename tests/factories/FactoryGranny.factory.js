@@ -1,6 +1,6 @@
 Factories
 .FactoryGranny = new Factory()
-.attr('traits', [])
+.attr('traits', {})
 .attr('constructor', function () {
   return sinon.stub().returns({
     extend: sinon.stub
@@ -15,6 +15,11 @@ Factories
     })
   }
 })
+
+Factories.FactoryGranny
+.traits.stubbedTrait = new Factory()
+.extend(Factories.FactoryGranny)
+.attr('trait', sinon.stub)
 
 Factories.FactoryGranny
 .traits.static = new Factory()

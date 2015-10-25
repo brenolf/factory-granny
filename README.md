@@ -23,14 +23,15 @@ Factory Granny is a JavaScript library for Factories that is different from the 
 ### Static methods
 
 ```js
-var Factory = require('factory-granny')
+var Factory = new (require('factory-granny'))
+
 var sinon = require('sinon')
 
-var UserFactory = new Factory()
+Factory('User')
 .attr('name', 'brenolf')
 .static('sayMyName', sinon.stub)
 
-var instance = UserFactory.get()
+var instance = Factory('User').get()
 ```
 
 In this example `instance` is a function that always returns an object `{username: 'brenolf'}` when called with `new`. Also, this function will have a `sayMyName` property that is a stub. As simple as that!
@@ -38,7 +39,7 @@ In this example `instance` is a function that always returns an object `{usernam
 Static attributes may also have dependencies over other fields:
 
 ```js
-var UserFactory = new Factory()
+Factory('User')
 .attr('name', 'brenolf')
 .static('sayMyName', ['name'], function (name) {
 	return 'Hello ' + name
@@ -49,7 +50,7 @@ Ultimately you can track the changes of the instance being returned on every `ge
 
 ```js
 // user-factory.js
-module.exports = new Factory()
+module.exports = Factory('User')
 .attr('name', 'brenolf')
 .attr('spy', sinon.stub)
 .static('sayMyName', ['name'], function (name) {
@@ -57,9 +58,9 @@ module.exports = new Factory()
 })
 
 // test.js
-var Factory = require('user-factory.js')
+var UserFactory = require('user-factory.js')
 
-var user = Factory.get()
+var user = UserFactory.get()
 var instance = user._instance
 
 // ...
@@ -70,6 +71,8 @@ expect(instance.spy).to.have.been.calledOnce
 You can also call `build` instead of `get` in order to get an object with all the attributes given, but not needing to instantiate the returned function.
 
 ```js
+var UserFactory = require('user-factory.js')
+
 /*
 	user_fn = function () {
 		return {
@@ -78,7 +81,7 @@ You can also call `build` instead of `get` in order to get an object with all th
 		}
 	}
 */
-var user_fn = Factory.get()
+var user_fn = UserFactory.get()
 
 /*
 	user = {
@@ -86,7 +89,7 @@ var user_fn = Factory.get()
 		spy: sinon.stub()
 	}
 */
-var user = Factory.build()
+var user = UserFactory.build()
 ```
 
 ### Traits
@@ -94,10 +97,10 @@ var user = Factory.build()
 Factory Granny makes it super easy to use traits in your development.
 
 ```js
-UserFactory.trait('ABQ')
+Factory('User.ABQ')
 .attr('name', 'heisenberg')
 
-UserFactory.traits.ABQ.get().sayMyName
+Factory('User.ABQ').get().sayMyName
 ```
 
 ### Factory box
@@ -105,10 +108,10 @@ UserFactory.traits.ABQ.get().sayMyName
 Factory Granny comes with a handful of stubs to make writing you factories even faster. For example:
 
 ```js
-var UserFactory = new Factory()
+Factory('User')
 .attr('name', 'brenolf')
 .static('sayMyName', Factory.box.true())
-.static('find', Factory.box.builds(UserFactory, 'ABQ'))
+.static('find', Factory.box.builds('User.ABQ'))
 ```
 
 There are many other aliases to make writing you factories a fun work:
