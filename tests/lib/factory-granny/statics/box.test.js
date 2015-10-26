@@ -91,6 +91,38 @@ describe('Factory#box', function () {
     })
   })
 
+  describe('#build', function () {
+    context('when a factory is given', function () {
+      it('retuns a instance of the factory', function () {
+        var factory = Factories.GenericFactory.build()
+
+        var subject = box.build.call(factory, 'trait')()
+
+        expect(subject.isSinonProxy).not.to.be.truthy
+        expect(subject.called).not.to.be.falsy
+
+        expect(subject).to.eql({
+          name: 'myname'
+        })
+      })
+    })
+
+    context('when no trait is given', function () {
+      it('retuns the last used factory', function () {
+        var factory = Factories.GenericFactory.traits.withLast.build()
+
+        var subject = box.build.call(factory)()
+
+        expect(subject.isSinonProxy).not.to.be.truthy
+        expect(subject.called).not.to.be.falsy
+
+        expect(subject).to.eql({
+          name: 'factoryName'
+        })
+      })
+    })
+  })
+
   describe('#chain', function () {
     context('when a factory is given', function () {
       it('retuns a sinon stub that returns a factory object', function () {
