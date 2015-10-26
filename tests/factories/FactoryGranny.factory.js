@@ -17,6 +17,18 @@ Factories
 })
 
 Factories.FactoryGranny
+.traits.traitWithStub = new Factory()
+.extend(Factories.FactoryGranny)
+.attr('super_', {
+  prototype: {
+    build: sinon.stub().returns({
+      x: 42,
+      stub: sinon.stub()
+    })
+  }
+})
+
+Factories.FactoryGranny
 .traits.stubbedTrait = new Factory()
 .extend(Factories.FactoryGranny)
 .attr('trait', sinon.stub)
