@@ -23,7 +23,7 @@ Factory Granny is a JavaScript library for Factories that is different from the 
 ### Static methods
 
 ```js
-var Factory = new (require('factory-granny'))
+var Factory = require('factory-granny')
 
 var sinon = require('sinon')
 
