@@ -147,6 +147,8 @@ There are many other aliases to make writing you factories a fun work:
 | `chain(Factory)` | A sinon stub that returns a `.build()` of the given factory (last factory created if none given) |
 | `chainAsync(Factory)` | A sinon stub that resolves a `.build()` of the given factory (last factory created if none given) |
 
+The functions that receives a factory string as parameter are all lazy loaded. Therefore, you can use factories that are not created yet but will be available when `build` is later called.
+
 The greatest advantage of using `Factory.box` is when working with the factories. Since every function is evaluated on each `build` and `get` calls, if you wanted to have an attribute evaluated to a function value (using `sinon` stubs, for instance) you would need to write down a function that returns a function pointer. Factory Granny does that for you under the hood!
 
 Note that Factory Granny is opinionated using `sinon` for its stubs.
