@@ -103,6 +103,24 @@ Factory('User.ABQ')
 Factory('User.ABQ').get().sayMyName
 ```
 
+As a matter of fact, you don't need to first write the parent factory. You can define a trait first and later its parent just by calling `propagate`.
+
+```js
+Factory('Name.trait')
+.attr('name', 'This is my name')
+
+Factory('Name')
+.attr('name', 'Main name')
+.attr('parent', true)
+.propagate()
+
+Factory('Name').build() // { name: 'Main name', parent: true }
+
+Factory('Name.trait').build() // { name: 'This is my name', parent: true }
+```
+
+If you don't call `propagate` at the end of the parents' chain, then all of its traits will not inherit its attributes.
+
 ### Factory box
 
 Factory Granny comes with a handful of stubs to make writing you factories even faster. For example:
@@ -111,7 +129,7 @@ Factory Granny comes with a handful of stubs to make writing you factories even 
 Factory('User')
 .attr('name', 'brenolf')
 .static('sayMyName', Factory.box.true())
-.static('find', Factory.box.builds('User.ABQ'))
+.static('find', Factory.box.chain('User.ABQ'))
 ```
 
 There are many other aliases to make writing you factories a fun work:
@@ -123,10 +141,12 @@ There are many other aliases to make writing you factories a fun work:
 | `false()`                | `sinon.stub().returns(false)`                                                        |
 | `returns(value)`         | `sinon.stub().returns(value)`                                                        |
 | `throws()`               | `sinon.stub().throws()`                                                              |
-| `resolves(value)`        | A sinon promise stub which resolves to a given value
+| `resolves(value)`        | A sinon promise stub which resolves to a given value (`{}` if none given)
 |
 | `rejects()`              | A sinon promise stub that rejects                                                    |
-| `builds(Factory, trait)` | A sinon promise stub which resolves into an instance of the given factory and trait. |
+| `chain(Factory)` | A sinon stub that returns a `.build()` of the given factory |
+|
+| `chainAsync(Factory)` | A sinon stub that resolves a `.build()` of the given factory |
 
 The greatest advantage of using `Factory.box` is when working with the factories. Since every function is evaluated on each `build` and `get` calls, if you wanted to have an attribute evaluated to a function value (using `sinon` stubs, for instance) you would need to write down a function that returns a function pointer. Factory Granny does that for you under the hood!
 

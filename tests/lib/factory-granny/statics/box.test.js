@@ -53,16 +53,29 @@ describe('Factory#box', function () {
   })
 
   describe('#resolves', function () {
-    it('retuns a sinon stub that yields the given object', function () {
-      var subject = box.resolves({
-        x: 42
-      })()
+    context('when a value is given', function () {
+      it('retuns a sinon stub that yields the given object', function () {
+        var subject = box.resolves({
+          x: 42
+        })()
 
-      expect(subject.isSinonProxy).to.be.truthy
-      expect(subject.called).to.be.falsy
+        expect(subject.isSinonProxy).to.be.truthy
+        expect(subject.called).to.be.falsy
 
-      return expect(subject()).to.eventually.eql({
-        x: 42
+        return expect(subject()).to.eventually.eql({
+          x: 42
+        })
+      })
+    })
+
+    context('when no value is given', function () {
+      it('retuns a sinon stub that yields an empty object', function () {
+        var subject = box.resolves()()
+
+        expect(subject.isSinonProxy).to.be.truthy
+        expect(subject.called).to.be.falsy
+
+        return expect(subject()).to.eventually.eql({})
       })
     })
   })
@@ -78,31 +91,66 @@ describe('Factory#box', function () {
     })
   })
 
-  describe('#builds', function () {
-    context('when a trait is given', function () {
-      it('retuns a sinon stub that yields a trait object', function () {
+  describe('#chain', function () {
+    context('when a factory is given', function () {
+      it('retuns a sinon stub that returns a factory object', function () {
         var factory = Factories.GenericFactory.build()
 
-        var subject = box.builds(factory, 'trait')()
+        var subject = box.chain.call(factory, 'trait')()
 
         expect(subject.isSinonProxy).to.be.truthy
         expect(subject.called).to.be.falsy
 
-        expect(factory.traits.trait.build).to.have.been.calledOnce
-        expect(factory.build).not.to.have.been.called
+        expect(subject()).to.eql({
+          name: 'myname'
+        })
       })
     })
 
     context('when no trait is given', function () {
-      it('retuns a sinon stub that yields a ordinary object', function () {
-        var factory = Factories.GenericFactory.traits.noTraits.build()
+      it('retuns the last used factory', function () {
+        var factory = Factories.GenericFactory.traits.withLast.build()
 
-        var subject = box.builds(factory, 'trait')()
+        var subject = box.chain.call(factory)()
 
         expect(subject.isSinonProxy).to.be.truthy
         expect(subject.called).to.be.falsy
 
-        expect(factory.build).to.have.been.called
+        expect(subject()).to.eql({
+          name: 'factoryName'
+        })
+      })
+    })
+  })
+
+  describe('#chainAsync', function () {
+    context('when a factory is given', function () {
+      it('retuns a sinon stub that returns a factory object', function () {
+        var factory = Factories.GenericFactory.build()
+
+        var subject = box.chainAsync.call(factory, 'trait')()
+
+        expect(subject.isSinonProxy).to.be.truthy
+        expect(subject.called).to.be.falsy
+
+        expect(subject()).to.eventually.eql({
+          name: 'myname'
+        })
+      })
+    })
+
+    context('when no trait is given', function () {
+      it('retuns the last used factory', function () {
+        var factory = Factories.GenericFactory.traits.withLast.build()
+
+        var subject = box.chainAsync.call(factory)()
+
+        expect(subject.isSinonProxy).to.be.truthy
+        expect(subject.called).to.be.falsy
+
+        expect(subject()).to.eventually.eql({
+          name: 'factoryName'
+        })
       })
     })
   })

@@ -20,7 +20,8 @@
       "expect": true,
       "Factories": true,
       "Factory": true,
-      "__dirname": true
+      "__dirname": true,
+      "rewire": true
     },
 
     "laxbreak"      : true,
@@ -42,7 +43,7 @@
     "expr"          : true,
     "forin"         : false,
     "latedef"       : true,
-    "loopfunc"      : false,
+    "loopfunc"      : true,
     "noarg"         : true,
     "scripturl"     : false,
     "shadow"        : "inner",

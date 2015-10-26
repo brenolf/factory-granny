@@ -15,8 +15,8 @@ describe('FactoryGranny#trait', function () {
     subject.call(FactoryGranny, 'heisenberg')
 
     expect(FactoryGranny.constructor).to.have.been.calledWithNew
-    expect(FactoryGranny.traits).to.have.key('heisenberg')
-    expect(FactoryGranny.traits.heisenberg._static[0].name).to.eql('attr1')
-    expect(FactoryGranny.traits.heisenberg._static[0].value()).to.eql(42)
+    expect(FactoryGranny.traits).to.have.any.keys('heisenberg')
+    expect(FactoryGranny.traits.heisenberg._static).to.have.key('attr1')
+    expect(FactoryGranny.traits.heisenberg._static.attr1.value()).to.eql(42)
   })
 })

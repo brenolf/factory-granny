@@ -6,7 +6,7 @@ describe('FactoryGranny#static', function () {
   beforeEach(function () {
     FactoryGranny = Factories.FactoryGranny.build()
 
-    FactoryGranny._static = []
+    FactoryGranny._static = {}
 
     staticProto(FactoryGranny)
 
@@ -19,11 +19,14 @@ describe('FactoryGranny#static', function () {
       var list = FactoryGranny._static
 
       expect(result).to.eql(FactoryGranny)
-      expect(list).to.have.length(1)
-      expect(list[0].name).to.eql('heisenberg')
-      expect(list[0].dependencies).to.eql(['a'])
-      expect(list[0].value).to.be.a.function
-      expect(list[0].value()).to.eql(42)
+
+      expect(list).to.have.key('heisenberg')
+
+      expect(list.heisenberg.dependencies).to.eql(['a'])
+
+      expect(list.heisenberg.value).to.be.a.function
+
+      expect(list.heisenberg.value()).to.eql(42)
     })
   })
 
@@ -33,16 +36,19 @@ describe('FactoryGranny#static', function () {
       var list = FactoryGranny._static
 
       expect(result).to.eql(FactoryGranny)
-      expect(list).to.have.length(1)
-      expect(list[0].name).to.eql('heisenberg')
-      expect(list[0].dependencies).to.eql([])
-      expect(list[0].value).to.be.a.function
-      expect(list[0].value()).to.eql(42)
+
+      expect(list).to.have.key('heisenberg')
+
+      expect(list.heisenberg.dependencies).to.eql([])
+
+      expect(list.heisenberg.value).to.be.a.function
+
+      expect(list.heisenberg.value()).to.eql(42)
     })
   })
 
   context('when a function is passed as value', function () {
-    it('adds an empty array to the object', function () {
+    it('adds callable function as value', function () {
       var result = subject.call(FactoryGranny, 'heisenberg', function () {
         return 42
       })
@@ -50,11 +56,14 @@ describe('FactoryGranny#static', function () {
       var list = FactoryGranny._static
 
       expect(result).to.eql(FactoryGranny)
-      expect(list).to.have.length(1)
-      expect(list[0].name).to.eql('heisenberg')
-      expect(list[0].dependencies).to.eql([])
-      expect(list[0].value).to.be.a.function
-      expect(list[0].value()).to.eql(42)
+
+      expect(list).to.have.key.heisenberg
+
+      expect(list.heisenberg.dependencies).to.eql([])
+
+      expect(list.heisenberg.value).to.be.a.function
+
+      expect(list.heisenberg.value()).to.eql(42)
     })
   })
 })

@@ -1,4 +1,3 @@
-var FactoryGranny = require('../../../lib/factory-granny/FactoryGranny')
 var Register = rewire('../lib/factory-granny/Register')
 
 describe('Register', function () {
@@ -6,7 +5,7 @@ describe('Register', function () {
 
   beforeEach(function () {
     Register.__set__('box', {
-      x: 42
+      x: sinon.stub()
     })
 
     subject = new Register
@@ -14,9 +13,9 @@ describe('Register', function () {
 
   describe('#constructor', function () {
     it('returns a callable function', function () {
-      expect(subject.box).to.eql({
-        x: 42
-      })
+      expect(subject.box).to.have.key('x')
+
+      expect(subject.box.x).to.be.a('function')
 
       expect(subject).to.be.a('function')
     })

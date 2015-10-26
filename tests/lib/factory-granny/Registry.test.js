@@ -1,4 +1,3 @@
-var Factory = require('rosie').Factory
 var Registry = rewire('../lib/factory-granny/Registry')
 
 describe('Registry', function () {
@@ -33,6 +32,14 @@ describe('Registry', function () {
         subject.register('Name')
 
         expect(instance.trait).to.have.been.calledWith('Name')
+      })
+    })
+
+    context('when no argument is passed and there is no last', function () {
+      it('throws an error', function () {
+        expect(function () {
+          subject.register()
+        }).to.throw()
       })
     })
 

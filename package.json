@@ -13,8 +13,8 @@
   "author": "Breno Lima de Freitas <brenolimadefreitas@gmail.com> (https://breno.io/)",
   "license": "Apache 2.0",
   "dependencies": {
+    "merge": "^1.2.0",
     "rosie": "^1.2.0",
-    "shallow-copy": "0.0.1",
     "sinon": "^1.17.1",
     "sinon-as-promised": "^4.0.0",
     "wrench": "^1.5.8"

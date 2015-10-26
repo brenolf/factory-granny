@@ -24,10 +24,28 @@ Factories.FactoryGranny
 Factories.FactoryGranny
 .traits.static = new Factory()
 .extend(Factories.FactoryGranny)
-.attr('_static', [{
-  name: 'attr1',
-  dependencies: ['name'],
-  value: function () {
-    return 42
+.attr('_static', {
+  attr1: {
+    dependencies: ['name'],
+    value: function () {
+      return 42
+    }
   }
-}])
+})
+.attr('callbacks', [1, 2, 3])
+.attr('sequences', {
+  a: 1
+})
+.attr('opts', {
+  b: 2
+})
+.attr('attrs', {
+  c: 3
+})
+.attr('traits', {
+  name: {
+    sequences: {
+      aa: 1
+    }
+  }
+})
