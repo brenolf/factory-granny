@@ -141,11 +141,9 @@ There are many other aliases to make writing you factories a fun work:
 | `false()`                | `sinon.stub().returns(false)`                                                        |
 | `returns(value)`         | `sinon.stub().returns(value)`                                                        |
 | `throws()`               | `sinon.stub().throws()`                                                              |
-| `resolves(value)`        | A sinon promise stub which resolves to a given value (`{}` if none given)
-|
-| `rejects()`              | A sinon promise stub that rejects                                                    |
+| `resolves(value)`        | A sinon promise stub which resolves to a given value (`{}` if none given) |
+| `rejects()`              | A sinon promise stub that rejects |
 | `chain(Factory)` | A sinon stub that returns a `.build()` of the given factory |
-|
 | `chainAsync(Factory)` | A sinon stub that resolves a `.build()` of the given factory |
 
 The greatest advantage of using `Factory.box` is when working with the factories. Since every function is evaluated on each `build` and `get` calls, if you wanted to have an attribute evaluated to a function value (using `sinon` stubs, for instance) you would need to write down a function that returns a function pointer. Factory Granny does that for you under the hood!
